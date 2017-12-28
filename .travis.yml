@@ -23,4 +23,6 @@ before_script:
   - docker exec -it db-master bash -c "mysql -uroot -p1234 < temp/my.master.init_test.sql"
   - sleep 5
 
-script: php ./demo/Resources/test_result_validate.php
+script:
+ - php -v
+ - vendor/bin/phpunit tests
