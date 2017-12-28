@@ -1,6 +1,6 @@
 {
-  "name": "ridibooks/binlog-collector",
-  "description": "Ridibooks Binlog Collector",
+  "name": "ridibooks/docker-travis-ci-test",
+  "description": "Ridibooks Docker Travis CI TEST",
   "type": "library",
   "license": "MIT",
   "authors": [

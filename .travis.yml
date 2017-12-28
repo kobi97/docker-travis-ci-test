@@ -23,6 +23,9 @@ before_script:
   - docker exec -it db-master bash -c "mysql -uroot -p1234 < temp/my.master.init_test.sql"
   - sleep 5
 
+install:
+  travis_retry composer install --no-interaction --prefer-dist;
+
 script:
  - php -v
  - vendor/bin/phpunit tests
