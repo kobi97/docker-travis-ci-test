@@ -1,0 +1,13 @@
+language: php
+
+php:
+  - '7.0'
+
+services:
+  - docker
+
+before_script:
+  -  demo/Resources/init_environment.sh
+  -  sleep 5
+
+script: php demo/Resources/test_result_validate.php
