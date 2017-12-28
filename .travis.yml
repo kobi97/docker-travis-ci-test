@@ -13,13 +13,13 @@ before_script:
   - docker run -p 13306:3306  --name db-master -e MYSQL_ROOT_PASSWORD=1234 -d db-master
   - docker run -p 13307:3306 --name db-slave --link db-master:master -e MYSQL_ROOT_PASSWORD=1234 -d db-slave
   - docker run -p 13308:3306  --name db-slave-slave --link db-slave:slave -e MYSQL_ROOT_PASSWORD=1234 -d db-slave-slave
-  - sleep 12;
+  - sleep 20;
   - docker exec -it db-master bash -c "mysql -uroot -p1234 < temp/my.master.sql"
-  - sleep 4;
+  - sleep 5;
   - docker exec -it db-slave bash -c "mysql -uroot -p1234 < temp/my.slave.sql"
-  - sleep 4;
+  - sleep 5;
   - docker exec -it db-slave-slave bash -c "mysql -uroot -p1234 < temp/my.slave-slave.sql"
-  - sleep 2;
+  - sleep 5;
   - docker exec -it db-master bash -c "mysql -uroot -p1234 < temp/my.master.init_test.sql"
   - sleep 5
 
