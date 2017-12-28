@@ -7,9 +7,9 @@ services:
   - docker
 
 before_script:
-  - docker build -t db-master Resources/docker/db-master
-  - docker build -t db-slave Resources/docker/db-slave
-  - docker build -t db-slave-slave Resources/docker/db-slave-slave
+  - docker build -t db-master ./demo/esources/docker/db-master
+  - docker build -t db-slave ./demo/Resources/docker/db-slave
+  - docker build -t db-slave-slave ./demo/Resources/docker/db-slave-slave
   - docker run -p 3306:3306  --name db-master -e MYSQL_ROOT_PASSWORD=1234 -d db-master
   - docker run -p 3307:3306 --name db-slave --link db-master:master -e MYSQL_ROOT_PASSWORD=1234 -d db-slave
   - docker run -p 3308:3306  --name db-slave-slave --link db-slave:slave -e MYSQL_ROOT_PASSWORD=1234 -d db-slave-slave
@@ -23,4 +23,4 @@ before_script:
   - docker exec -it db-master bash -c "mysql -uroot -p1234 < temp/my.master.init_test.sql"
   - sleep 5
 
-script: php demo/Resources/test_result_validate.php
+script: php ./demo/Resources/test_result_validate.php
